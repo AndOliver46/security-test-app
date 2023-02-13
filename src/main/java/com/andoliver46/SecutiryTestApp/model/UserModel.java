@@ -1,7 +1,7 @@
 package com.andoliver46.SecutiryTestApp.model;
 
+import com.andoliver46.SecutiryTestApp.auth.RegisterRequest;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +23,16 @@ public class UserModel implements UserDetails, Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles = new HashSet<>();
+
+    public UserModel(){
+        roles.addAll(Arrays.asList(new RoleModel(1, null)));
+    }
+
+    public UserModel(UUID id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 
     public UUID getId() {
         return id;

@@ -20,7 +20,6 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ProductModelDTO>> findAll(){
         List<ProductModelDTO> dtos = service.findAll();

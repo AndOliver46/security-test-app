@@ -18,6 +18,14 @@ public class RoleModel implements GrantedAuthority, Serializable {
     @Column(unique = true)
     private String name;
 
+    public RoleModel(){
+    }
+
+    public RoleModel(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
